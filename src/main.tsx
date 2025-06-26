@@ -9,11 +9,9 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { Toaster } from "react-hot-toast";
-
-// ✅ Axios global config
 import axios from "axios";
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:5000/api/v1"; // 👈 No proxy assumption
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 
 const theme = createTheme({

@@ -1,10 +1,10 @@
 import axios from "axios";
 
-// 🔧 Base API config
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
-  withCredentials: true, // 🔥 Automatically send cookies
+  baseURL: import.meta.env.VITE_BACKEND_URL, // ✅ uses environment variable
+  withCredentials: true,
 });
+
 
 // ===============================
 // 🧠 AUTH ROUTES
