@@ -9,9 +9,10 @@ const API = axios.create({
 // ===============================
 // 🧠 AUTH ROUTES
 // ===============================
-
 export const loginUser = async (email: string, password: string) => {
+  console.log("🔥 Trying to login...");
   const res = await API.post("/user/login", { email, password });
+  console.log("✅ Login response:", res);
   return res.data;
 };
 
