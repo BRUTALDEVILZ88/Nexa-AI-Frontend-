@@ -11,7 +11,7 @@ import {
   sendChatRequest,
 } from "../helpers/api-communicator";
 import toast from "react-hot-toast";
-
+//i am done 
 type Message = {
   role: "user" | "assistant";
   content: string;
