@@ -1,14 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import Login from "../pages/Login";
-import Signup from "../pages/Signup"; // import signup
+import Signup from "../pages/Signup";
 import TypingAnim from "./typer/TypingAnim";
+import { useMediaQuery } from "@mui/material"; // 👈 Add this
 
 interface Props {
   type: "login" | "signup";
 }
 
 const SplitLayout: React.FC<Props> = ({ type }) => {
+  const isMobile = useMediaQuery("(max-width:768px)");
+
+  // 👉 If on mobile, directly return only the form
+  if (isMobile) {
+    return type === "login" ? <Login /> : <Signup />;
+  }
+
+  // 👉 For desktop: Show split layout
   return (
     <Container>
       <Left>
@@ -23,7 +32,6 @@ const SplitLayout: React.FC<Props> = ({ type }) => {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
   height: 100vh;
   overflow: hidden;
 
@@ -40,24 +48,6 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* center typing on mobile */
-
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 2rem;
-  }
-
-  ul {
-    font-size: 1.2rem;
-    line-height: 2.2rem;
-    list-style: none;
-    padding: 0;
-  }
-
-  @media (max-width: 768px) {
-    padding: 2rem;
-  }
 `;
 
 const Right = styled.div`
@@ -66,11 +56,6 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media (max-width: 768px) {
-    padding: 2rem;
-  }
 `;
-
 
 export default SplitLayout;
