@@ -23,8 +23,13 @@ const SplitLayout: React.FC<Props> = ({ type }) => {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
   height: 100vh;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`
@@ -35,6 +40,7 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; /* center typing on mobile */
 
   h1 {
     font-size: 2.5rem;
@@ -49,7 +55,9 @@ const Left = styled.div`
     padding: 0;
   }
 
- 
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 const Right = styled.div`
@@ -58,6 +66,10 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 
