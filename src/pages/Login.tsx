@@ -68,20 +68,35 @@ const Login = () => {
   );
 };
 const StyledWrapper = styled.div`
-   .container {
-    position: fixed; 
-    bottom: 80px;    
-    right: 100px;     
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .container {
+    position: fixed;
+    bottom: 80px;
+    right: 100px;
     max-width: 350px;
-    background: #F8F9FD;
     background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
     border-radius: 40px;
     padding: 25px 35px;
     border: 5px solid rgb(255, 255, 255);
     box-shadow: rgba(133, 189, 215, 0.88) 0px 30px 30px -20px;
-    z-index: 999; 
+    z-index: 999;
   }
 
+  // 👇 Mobile layout fix
+  @media (max-width: 768px) {
+    .container {
+      position: static;
+      margin: auto;
+      right: auto;
+      bottom: auto;
+      width: 90%;
+      max-width: 400px;
+    }
+  }
   .heading {
     text-align: center;
     font-weight: 900;
