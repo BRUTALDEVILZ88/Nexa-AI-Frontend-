@@ -85,61 +85,89 @@ const Chat = () => {
       }}
     >
       {/* Left Panel */}
-      <Box
-        sx={{
-          display: { md: "flex", xs: "none", sm: "none" },
-          flex: 0.2,
-          flexDirection: "column",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            height: "60vh",
-            bgcolor: "rgb(17,29,39)",
-            borderRadius: 5,
-            flexDirection: "column",
-            mx: 3,
-          }}
-        >
-          <Avatar
-            sx={{
-              mx: "auto",
-              my: 2,
-              bgcolor: "white",
-              color: "black",
-              fontWeight: 700,
-            }}
-          >
-            {getInitials(auth?.user?.name)}
-          </Avatar>
-          <Typography sx={{ mx: "auto", fontFamily: "work sans" }}>
-            You are talking to a ChatBOT
-          </Typography>
-          <Typography sx={{ mx: "auto", fontFamily: "work sans", my: 4, p: 3 }}>
-            You can ask questions related to Knowledge, Business, Advice,
-            Education, etc. But avoid sharing personal information.
-          </Typography>
-          <Button
-            onClick={handleDeleteChats}
-            sx={{
-              width: "200px",
-              my: "auto",
-              color: "white",
-              fontWeight: "700",
-              borderRadius: 3,
-              mx: "auto",
-              bgcolor: red[300],
-              ":hover": {
-                bgcolor: red.A400,
-              },
-            }}
-          >
-            Clear Conversation
-          </Button>
-        </Box>
-      </Box>
+      {/* Left Panel */}
+<Box
+  sx={{
+    display: { md: "flex", xs: "flex", sm: "flex" }, // Show on all screens
+    flex: { md: 0.2, xs: 1 },
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    px: { xs: 2, md: 3 },
+    mt: { xs: 0, md: 3 },
+  }}
+>
+  {/* Only show full panel on desktop */}
+  <Box
+    sx={{
+      display: { xs: "none", md: "flex" },
+      width: "100%",
+      height: "60vh",
+      bgcolor: "rgb(17,29,39)",
+      borderRadius: 5,
+      flexDirection: "column",
+      mx: 3,
+    }}
+  >
+    <Avatar
+      sx={{
+        mx: "auto",
+        my: 2,
+        bgcolor: "white",
+        color: "black",
+        fontWeight: 700,
+      }}
+    >
+      {getInitials(auth?.user?.name)}
+    </Avatar>
+    <Typography sx={{ mx: "auto", fontFamily: "work sans" }}>
+      You are talking to a ChatBOT
+    </Typography>
+    <Typography
+      sx={{ mx: "auto", fontFamily: "work sans", my: 4, p: 3, textAlign: "center" }}
+    >
+      You can ask questions related to Knowledge, Business, Advice,
+      Education, etc. But avoid sharing personal information.
+    </Typography>
+    <Button
+      onClick={handleDeleteChats}
+      sx={{
+        width: "200px",
+        my: "auto",
+        color: "white",
+        fontWeight: "700",
+        borderRadius: 3,
+        mx: "auto",
+        bgcolor: red[300],
+        ":hover": {
+          bgcolor: red.A400,
+        },
+      }}
+    >
+      Clear Conversation
+    </Button>
+  </Box>
+
+  {/* Only show the clear button on mobile */}
+  <Box sx={{ display: { xs: "flex", md: "none" }, width: "100%", justifyContent: "center", mt: 2 }}>
+    <Button
+      onClick={handleDeleteChats}
+      sx={{
+        bgcolor: red[300],
+        color: "white",
+        fontWeight: "600",
+        px: 3,
+        py: 1,
+        borderRadius: 2,
+        ":hover": {
+          bgcolor: red.A400,
+        },
+      }}
+    >
+      Clear Conversation
+    </Button>
+  </Box>
+</Box>
 
       {/* Chat Area */}
       <Box
