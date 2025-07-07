@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const questions = [
   "How come orange juice prices have dropped?",
@@ -20,7 +20,7 @@ const Card = () => {
   return (
     <StyledWrapper>
       <div className="marquee">
-        <div className="marquee_header image-inverted">Explore Nexa-AI Ideas</div>
+        <div className="marquee_header">Explore Nexa-AI Ideas</div>
 
         {[0, 1, 2].map((row) => (
           <div
@@ -34,7 +34,7 @@ const Card = () => {
             </div>
             <div className="marquee__group">
               {questions.map((q, index) => (
-                <span key={`duplicate-${index}`}>{q}</span>
+                <span key={`dup-${index}`}>{q}</span>
               ))}
             </div>
           </div>
@@ -44,6 +44,7 @@ const Card = () => {
   );
 };
 
+export default Card;
 const scrollLeft = keyframes`
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -53,7 +54,7 @@ const scrollRight = keyframes`
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0%); }
 `;
-export default Card;
+
 const StyledWrapper = styled.div`
   .marquee {
     width: 100%;
@@ -62,21 +63,25 @@ const StyledWrapper = styled.div`
   }
 
   .marquee_header {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 25px;
-    
+    margin-bottom: 24px;
+    color: white;
   }
 
   .marquee__inner {
     display: flex;
     width: max-content;
-    animation: scrollLeft 100s linear infinite; /* 👈 slower scroll */
+    animation: ${scrollLeft} 80s linear infinite;
     margin-bottom: 20px;
 
     &.reverse {
-      animation: scrollRight 100s linear infinite; /* 👈 slower scroll reverse */
+      animation: ${scrollRight} 80s linear infinite;
+    }
+
+    &:hover {
+      animation-play-state: paused;
     }
   }
 
@@ -88,50 +93,36 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;               /* 👈 rectangular shape */
+    width: 300px;
     height: 60px;
-    margin: 0 0.75rem;
+    margin: 0 12px;
     white-space: normal;
     text-align: center;
-    border-radius: 12px;        /* 👈 slightly rounded */
+    border-radius: 12px;
     background: #212121;
     color: white;
     padding: 12px 18px;
     font-size: 0.95rem;
     font-weight: 500;
-    box-shadow:
-      12px 12px 20px rgba(25, 25, 25, 0.4),
-      -8px -8px 20px rgba(60, 60, 60, 0.1);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
-  }
 
-  .marquee__group span:hover {
-    transform: scale(1.02);
-  }
-
-  @keyframes scrollLeft {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes scrollRight {
-    0% {
-      transform: translateX(-50%);
-    }
-    100% {
-      transform: translateX(0%);
+    &:hover {
+      transform: scale(1.03);
     }
   }
 
   @media (max-width: 768px) {
+    .marquee_header {
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
     .marquee__group span {
-      width: 240px;
-      height: 54px;
-      font-size: 0.9rem;
+      width: 220px;
+      height: 50px;
+      font-size: 0.85rem;
+      margin: 0 8px;
       padding: 10px 14px;
     }
   }
